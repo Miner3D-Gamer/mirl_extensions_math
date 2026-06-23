@@ -1,6 +1,6 @@
 #![allow(clippy::approx_constant)]
 
-use mirl_core::impl_trait;
+use mirl_extensions_core::impl_trait;
 
 /// The value π for self
 pub const trait ConstPi {
@@ -428,7 +428,7 @@ const impl<T: ConstPi + ConstNumbers256 + const std::ops::Div<Output = T>> Const
 
 #[allow(missing_docs)]
 /// An extended version of the [`ConstOne`](crate::math::ConstOne)/[`ConstZero`](crate::math::ConstZero) traits covering all numbers from 0 to 127
-pub const trait ConstNumbers128: SupportsRange128 {
+pub trait ConstNumbers128: SupportsRange128 {
     const CONST_0: Self;
     const CONST_1: Self;
     const CONST_2: Self;
@@ -559,8 +559,8 @@ pub const trait ConstNumbers128: SupportsRange128 {
     const CONST_127: Self;
 }
 
-const impl<T: ConstOne + ConstZero + SupportsRange128 + const core::ops::Add<Output = T>>
-    ConstNumbers128 for T
+impl<T: ConstOne + ConstZero + SupportsRange128 + const core::ops::Add<Output = T>> ConstNumbers128
+    for T
 {
     const CONST_0: Self = T::ZERO;
     const CONST_1: Self = T::ONE;
@@ -826,11 +826,7 @@ pub const trait ConstNumbers256: ConstNumbers128 + SupportsRange256 {
 
 use mirl_extensions_core::*;
 const impl<
-    T: ConstOne
-        + ConstZero
-        + SupportsRange256
-        + const ConstNumbers128
-        + const core::ops::Add<Output = T>,
+    T: ConstOne + ConstZero + SupportsRange256 + ConstNumbers128 + const core::ops::Add<Output = T>,
 > ConstNumbers256 for T
 {
     const CONST_128: Self = T::CONST_127 + T::CONST_1;

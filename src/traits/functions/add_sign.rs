@@ -38,12 +38,12 @@ where
     fn add_sign(&self, value: S) -> Self {
         if value >= S::ZERO {
             (value).try_into_value().map_or_else(
-                || self.wrapping_add(U::MAX),
+                || self.wrapping_add(U::max_bound()),
                 |pos_val| self.wrapping_add(pos_val),
             )
         } else {
             (value.abs()).try_into_value().map_or_else(
-                || self.wrapping_sub(U::MAX),
+                || self.wrapping_sub(U::max_bound()),
                 |sub_val| self.wrapping_sub(sub_val),
             )
         }
@@ -53,7 +53,7 @@ where
         if value >= S::ZERO {
             (value)
                 .try_into_value()
-                .map_or_else(|| U::MAX, |pos_val| self.saturating_add(pos_val))
+                .map_or_else(|| U::max_bound(), |pos_val| self.saturating_add(pos_val))
         } else {
             (value.abs())
                 .try_into_value()

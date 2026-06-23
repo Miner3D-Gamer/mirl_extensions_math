@@ -7,7 +7,7 @@ repository.workspace = true
 [dependencies]
 mirl_extensions_core = { version = "0.0.0-alpha" }
 mirl_extensions_conversion = { version = "0.0.0-alpha" }
-mirl_core = { version = "0.0.0-alpha" }
+# mirl_core = { version = "0.0.0-alpha" }
 mirl_graphics = { version = "0.0.0-alpha" }
 
 ### Number crates

@@ -1,4 +1,4 @@
-use mirl_core::impl_trait;
+use mirl_extensions_core::impl_trait;
 
 /// Get the next bigger/smaller value that can be represented
 pub const trait NextUpDown {

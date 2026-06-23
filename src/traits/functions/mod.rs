@@ -77,17 +77,37 @@ pub use angular_conversion::*;
 mod normalize_vector;
 pub use normalize_vector::*;
 
-// /// A helper trait for the people who are used to `.signum()`
-// pub const trait SigNum {
-//     /// Returns the sign of the number -> -1, 0, 1
-//     #[must_use]
-//     fn signum(self) -> Self;
-// }
-// impl<T: [const] Sign> const SigNum for T {
-//     fn signum(self) -> Self {
-//         self.sign()
-//     }
-// }
+// TODO: Put this into its own file
+/// Interpolate between 0 and 1 by using self as the interpolator
+pub const trait Interpolate0To1AsInterpolator {
+    /// Interpolate between 0 and 1 by using self as the interpolator
+    ///
+    /// Steepness is how quickly the result goes from 0 to 1
+    ///
+    /// Offset is when the result goes from 0 to 1
+    ///
+    /// At x 1, the y will be 0.5 if the offset is 0
+    /// If the offset is 2 the y will be 2 at x 0.5
+    #[must_use]
+    fn interpolate_smooth_0_to_1(self, steepness: Self, offset: Self) -> Self;
+}
+
+impl<
+    T: InterpolateAsInterpolator<T>
+        + mirl_extensions_core::One
+        + std::ops::Add<Output = T>
+        + std::ops::Div<Output = T>
+        + std::ops::Mul<Output = T>
+        + std::ops::Neg<Output = T>
+        + NaturalExp
+        + Clone,
+> Interpolate0To1AsInterpolator for T
+{
+    fn interpolate_smooth_0_to_1(self, steepness: Self, offset: Self) -> Self {
+        Self::one()
+            / (Self::one() + { ((self / offset) * steepness.clone()).natural_exp() } + (-steepness))
+    }
+}
 
 // use crate::{U1, U2, U4};
 
