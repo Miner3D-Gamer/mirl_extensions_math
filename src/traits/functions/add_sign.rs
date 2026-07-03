@@ -31,12 +31,12 @@ where
         + SaturatingSub<Output = U>
         + core::ops::Add<U, Output = U>
         + Bounded
-        + ConstZero
+        + Zero
         + core::ops::Sub<U, Output = U>,
-    S: Copy + core::cmp::PartialOrd + Abs + ConstZero + TryIntoPatch<U>,
+    S: Copy + core::cmp::PartialOrd + Abs + Zero + TryIntoPatch<U>,
 {
     fn add_sign(&self, value: S) -> Self {
-        if value >= S::ZERO {
+        if value >= S::zero() {
             (value).try_into_value().map_or_else(
                 || self.wrapping_add(U::max_bound()),
                 |pos_val| self.wrapping_add(pos_val),
@@ -50,14 +50,14 @@ where
     }
 
     fn saturated_add_sign(&self, value: S) -> Self {
-        if value >= S::ZERO {
+        if value >= S::zero() {
             (value)
                 .try_into_value()
                 .map_or_else(|| U::max_bound(), |pos_val| self.saturating_add(pos_val))
         } else {
             (value.abs())
                 .try_into_value()
-                .map_or_else(|| U::ZERO, |sub_val| self.saturating_sub(sub_val))
+                .map_or_else(|| U::zero(), |sub_val| self.saturating_sub(sub_val))
         }
     }
 }

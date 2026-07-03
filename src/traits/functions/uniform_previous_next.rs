@@ -1,4 +1,4 @@
-use mirl_extensions_core::{ConstOne, ConstZero};
+use mirl_extensions_core::{One, Zero};
 
 use crate::NextUpDown;
 
@@ -12,11 +12,11 @@ pub const trait UniformPreviousNext {
     fn biggest_smaller_than_one() -> Self;
 }
 
-impl<T: ConstZero + ConstOne + NextUpDown> UniformPreviousNext for T {
+const impl<T: [const] Zero + [const] One + [const] NextUpDown> UniformPreviousNext for T {
     fn biggest_smaller_than_one() -> Self {
-        Self::ZERO.next_up()
+        Self::zero().next_up()
     }
     fn smallest_bigger_than_zero() -> Self {
-        Self::ONE.next_down()
+        Self::one().next_down()
     }
 }

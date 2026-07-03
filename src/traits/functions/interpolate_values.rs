@@ -7,8 +7,8 @@ pub const trait InterpolateAsInterpolatorLegacy<V1, V2 = V1, Output = V1> {
     fn interpolate_values_legacy(self, val1: V1, val2: V2) -> Output;
 }
 const impl<
-    S: ConstZero
-        + ConstOne
+    S: [const] Zero
+        + [const] One
         + [const] core::ops::Sub<Output = S>
         + [const] core::ops::Add<Output = S>
         + [const] core::ops::Mul<Output = S>
@@ -19,7 +19,7 @@ const impl<
 > InterpolateAsInterpolatorLegacy<V1, V2, S> for S
 {
     fn interpolate_values_legacy(self, val1: V1, val2: V2) -> Self {
-        (S::ONE - self) * val1.into() + self * val2.into()
+        (S::one() - self) * val1.into() + self * val2.into()
     }
 }
 /// Interpolate between 2 values with Self being the progress
@@ -28,8 +28,7 @@ pub const trait InterpolateAsInterpolator<V1, V2 = V1, Output = V1> {
     fn interpolate_values(self, val1: V1, val2: V2) -> Output;
 }
 const impl<
-    S: ConstZero
-        + ConstOne
+    S: [const] One
         + [const] core::ops::Sub<Output = S>
         + [const] core::ops::Add<Output = S>
         + [const] core::ops::Mul<Output = S>
@@ -40,7 +39,7 @@ const impl<
 > InterpolateAsInterpolator<V1, V2, S> for S
 {
     fn interpolate_values(self, val1: V1, val2: V2) -> Self {
-        (S::ONE - self) * val1.into_value() + self * val2.into_value()
+        (S::one() - self) * val1.into_value() + self * val2.into_value()
     }
 }
 

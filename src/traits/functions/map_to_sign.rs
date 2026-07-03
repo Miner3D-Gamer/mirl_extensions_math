@@ -1,5 +1,4 @@
 use crate::WrapOps;
-use mirl_extensions_core::ConstOne;
 
 /// Trait for mapping between signed and unsigned integer types
 pub const trait MapToSign {
@@ -33,8 +32,10 @@ macro_rules! impl_sign_mapping {
             #[allow(clippy::cast_sign_loss)]
             #[allow(trivial_numeric_casts)]
             fn map_sign_to_non_sign(self) -> Self::Unsigned {
+                use mirl_extensions_core::One;
                 (self as Self::Unsigned).wrapping_add(
-                    <$unsigned>::MAX / (<$unsigned>::ONE + <$unsigned>::ONE) + <$unsigned>::ONE,
+                    <$unsigned>::MAX / (<$unsigned>::one() + <$unsigned>::one())
+                        + <$unsigned>::one(),
                 )
             }
         }
@@ -45,8 +46,10 @@ macro_rules! impl_sign_mapping {
             #[allow(clippy::cast_possible_wrap)]
             #[allow(trivial_numeric_casts)]
             fn map_non_sign_to_sign(self) -> Self::Signed {
+                use mirl_extensions_core::One;
                 self.wrapping_sub(
-                    <$unsigned>::MAX / (<$unsigned>::ONE + <$unsigned>::ONE) + <$unsigned>::ONE,
+                    <$unsigned>::MAX / (<$unsigned>::one() + <$unsigned>::one())
+                        + <$unsigned>::one(),
                 ) as Self::Signed
             }
         }

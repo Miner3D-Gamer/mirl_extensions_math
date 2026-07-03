@@ -2,6 +2,9 @@
 // Const
 #![feature(const_trait_impl)]
 #![feature(const_ops)]
+#![feature(const_convert)]
+#![feature(const_try)]
+#![feature(const_option_ops)]
 // Core
 // #![feature(core_intrinsics)]
 // Additions
@@ -12,9 +15,6 @@
 #![feature(const_destruct)]
 #![feature(core_float_math)]
 #![feature(core_intrinsics)]
-#![feature(const_convert)]
-#![feature(const_try)]
-#![feature(const_option_ops)]
 
 mod traits;
 pub use traits::*;

@@ -1,17 +1,13 @@
 use crate::*;
 
 // To implement a new number, one must implement these traits:
-// ConstOne (One)
-// ConstZero (Zero)
+// One (One)
+// Zero (Zero)
 // Abs
-
+use mirl_extensions_core::Zero;
 impl Abs for num_bigint::BigInt {
     fn abs(self) -> Self {
-        if self > Self::ZERO {
-            self
-        } else {
-            -self
-        }
+        if self > Self::zero() { self } else { -self }
     }
 }
 

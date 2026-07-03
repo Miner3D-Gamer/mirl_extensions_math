@@ -3,32 +3,28 @@ name = "mirl_extensions_math"
 version = "0.0.0-alpha"
 edition.workspace = true
 repository.workspace = true
-
-[dependencies]
-mirl_extensions_core = { version = "0.0.0-alpha" }
-mirl_extensions_conversion = { version = "0.0.0-alpha" }
-# mirl_core = { version = "0.0.0-alpha" }
-mirl_graphics = { version = "0.0.0-alpha" }
-
-### Number crates
-num-bigint = { version = "0.4.2", optional = true }
-num-bigfloat = { version = "1.7", optional = true }
-num-traits = { version = "0.2.19", optional = true }
 [features]
 default = ["std"]
 std = []
 all = ["bigint", "bigfloat"]
 
-bigint = [
-    "dep:num-bigint",
-    "dep:num-traits",
-    "mirl_extensions_conversion/bigint",
-]
+bigint = ["dep:num-bigint", "dep:num-traits", "mirl_extensions_conversion/bigint"]
 bigfloat = ["dep:num-bigfloat", "mirl_extensions_conversion/bigfloat"]
 
 _checking = ["all"]
-[lints]
-workspace = true
+
+[dependencies]
+mirl_extensions_conversion = { version = "0.0.0-alpha" }
+mirl_extensions_core = { version = "0.0.0-alpha" }
+# mirl_core = { version = "0.0.0-alpha" }
+mirl_graphics = { version = "0.0.0-alpha" }
+num-bigfloat = { version = "1.7", optional = true }
+
+### Number crates
+num-bigint = { version = "0.5", optional = true }
+num-traits = { version = "0.2.19", optional = true }
 
 [build-dependencies]
 mirl_build_tools = { workspace = true }
+[lints]
+workspace = true
