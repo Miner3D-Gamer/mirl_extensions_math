@@ -7,10 +7,8 @@ repository.workspace = true
 default = ["std"]
 std = []
 all = ["bigint", "bigfloat"]
-
 bigint = ["dep:num-bigint", "dep:num-traits", "mirl_extensions_conversion/bigint"]
 bigfloat = ["dep:num-bigfloat", "mirl_extensions_conversion/bigfloat"]
-
 _checking = ["all"]
 
 [dependencies]
@@ -19,7 +17,6 @@ mirl_extensions_core = { version = "0.0.0-alpha" }
 # mirl_core = { version = "0.0.0-alpha" }
 mirl_graphics = { version = "0.0.0-alpha" }
 num-bigfloat = { version = "1.7", optional = true }
-
 ### Number crates
 num-bigint = { version = "0.5", optional = true }
 num-traits = { version = "0.2.19", optional = true }
