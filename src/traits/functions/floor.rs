@@ -28,7 +28,7 @@ const impl Floor for f16 {
 macro_rules! impl_floor_int {
     ($($t:ty),*) => {
         $(
-            impl const Floor for $t {
+            const impl Floor for $t {
                 fn floor(self) -> Self {
                     self
                 }

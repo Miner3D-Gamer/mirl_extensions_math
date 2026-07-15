@@ -19,7 +19,7 @@ pub const trait WrapOps {
 
 macro_rules! impl_wrap_ops_int {
     ($($t:ty)*) => ($(
-        impl const WrapOps for $t {
+        const impl WrapOps for $t {
             #[inline]
             fn wrapping_add(self, other: Self) -> Self {
                 <$t>::wrapping_add(self, other)
@@ -44,7 +44,7 @@ macro_rules! impl_wrap_ops_int {
 
 macro_rules! impl_wrap_ops_float {
     ($($t:ty)*) => ($(
-        impl const WrapOps for $t {
+        const impl WrapOps for $t {
             #[inline]
             fn wrapping_add(self, other: Self) -> Self {
                 self + other

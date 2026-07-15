@@ -10,7 +10,7 @@ pub const trait Clamp {
 macro_rules! impl_clamp_int {
     ($($t:ty),*) => {
         $(
-            impl const Clamp for $t {
+            const impl Clamp for $t {
                 fn clamped(self, min: Self, max: Self) -> Self {
                     if self < min {
                         min
@@ -28,7 +28,7 @@ macro_rules! impl_clamp_int {
 macro_rules! impl_clamp_float {
     ($($t:ty),*) => {
         $(
-            impl const Clamp for $t {
+            const impl Clamp for $t {
                 fn clamped(self, min: Self, max: Self) -> Self {
                     if self.is_nan() || min.is_nan() || max.is_nan() {
                         return self;

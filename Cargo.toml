@@ -5,10 +5,26 @@ edition.workspace = true
 repository.workspace = true
 [features]
 default = ["std"]
-std = []
-all = ["bigint", "bigfloat"]
-bigint = ["dep:num-bigint", "dep:num-traits", "mirl_extensions_conversion/bigint"]
-bigfloat = ["dep:num-bigfloat", "mirl_extensions_conversion/bigfloat"]
+std = [
+    "mirl_extensions_conversion/std",
+    "mirl_extensions_core/std",
+    "mirl_graphics/std",
+    "num-bigfloat?/std",
+    "num-bigint?/std",
+    "num-traits?/std",
+]
+all = ["bigint", "bigfloat", "mirl_extensions_core/all", "mirl_graphics/all"]
+bigint = [
+    "dep:num-bigint",
+    "dep:num-traits",
+    "mirl_extensions_conversion/bigint",
+    "mirl_extensions_core/bigint",
+]
+bigfloat = [
+    "dep:num-bigfloat",
+    "mirl_extensions_conversion/bigfloat",
+    "mirl_extensions_core/bigfloat",
+]
 _checking = ["all"]
 
 [dependencies]

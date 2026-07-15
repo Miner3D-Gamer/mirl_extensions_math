@@ -31,7 +31,7 @@ const impl MulAdd for f128 {
 macro_rules! impl_mul_add_plain {
     ($($t:ty),* $(,)?) => {
         $(
-            impl const MulAdd for $t {
+            const impl MulAdd for $t {
                 #[inline(always)]
                 fn mul_add(self, a: Self, b: Self) -> Self {
                     self * a + b

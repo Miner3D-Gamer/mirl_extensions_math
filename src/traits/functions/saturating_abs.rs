@@ -1,6 +1,3 @@
-
-
-
 /// Saturating absolute value
 pub const trait SaturatingAbs {
     /// The resulting type after applying saturating absolute value

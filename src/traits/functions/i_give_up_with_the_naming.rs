@@ -1,4 +1,3 @@
-
 /// Find the exponent x where 2^x is the next power of two
 pub const trait NextPowerOfTwoExponent {
     /// Find the exponent x where 2^x is the next power of two

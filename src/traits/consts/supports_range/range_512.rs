@@ -1,5 +1,5 @@
 use crate::Numbers128;
-use crate::{Numbers256};
+use crate::Numbers256;
 use mirl_extensions_core::{One, SupportsRange512, Zero};
 
 /// Get any number between 256 and 511
@@ -264,8 +264,14 @@ pub const trait Numbers512: SupportsRange512 + Numbers256 {
     fn num_510() -> Self;
     fn num_511() -> Self;
 }
-const impl<T: SupportsRange512 + [const] One + [const] Zero + [const] core::ops::Add<Output = T> + [const] Numbers256 + [const] Numbers128> Numbers512
-    for T
+const impl<
+    T: SupportsRange512
+        + [const] One
+        + [const] Zero
+        + [const] core::ops::Add<Output = T>
+        + [const] Numbers256
+        + [const] Numbers128,
+> Numbers512 for T
 {
     fn num_256() -> Self {
         Self::num_255() + Self::num_1()

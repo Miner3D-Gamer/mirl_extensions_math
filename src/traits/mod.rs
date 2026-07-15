@@ -19,7 +19,7 @@ pub use functions::*;
 // macro_rules! impl_sign {
 //     ($($t:ty),*) => {
 //         // See those two spaces between the `const` and `Sign`?
-//         $(impl const  Sign for $t {
+//         $(const impl  Sign for $t {
 //             fn sign(self) -> Self {
 //                 if self > 0 { 1  }
 //                 else if self < 0  { -1 }
@@ -31,7 +31,7 @@ pub use functions::*;
 // macro_rules! impl_sign_float {
 //     ($($t:ty),*) => {
 //         // See those two spaces between the `const` and `Sign`?
-//         $(impl const  Sign for $t {
+//         $(const impl  Sign for $t {
 //             fn sign(self) -> Self {
 //                 if self > 0.0 { 1.0  }
 //                 else if self < 0.0  { -1.0 }

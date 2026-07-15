@@ -31,7 +31,7 @@ const impl Ceil for f32 {
 macro_rules! impl_ceil_int {
     ($($t:ty),*) => {
         $(
-            impl const Ceil for $t {
+            const impl Ceil for $t {
                 fn ceil(self) -> Self {
                     self
                 }
