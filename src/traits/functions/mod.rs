@@ -77,6 +77,8 @@ pub use angular_conversion::*;
 mod normalize_vector;
 pub use normalize_vector::*;
 
+mod nan;
+pub use nan::*;
 // TODO: Put this into its own file
 /// Interpolate between 0 and 1 by using self as the interpolator
 pub const trait Interpolate0To1AsInterpolator {

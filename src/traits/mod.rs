@@ -6,6 +6,8 @@
 mod bigfloat;
 #[cfg(feature = "bigint")]
 mod bigint;
+#[cfg(feature = "fixed")]
+mod fixed;
 
 mod consts;
 pub use consts::*;

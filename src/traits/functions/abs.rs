@@ -1,3 +1,5 @@
+use mirl_extensions_core::impl_trait;
+
 /// Take the abs of the given value
 pub const trait Abs {
     #[must_use]
@@ -74,3 +76,4 @@ const impl Abs for isize {
         self.abs()
     }
 }
+impl_trait!(Abs {fn abs(self) -> Self {self}} for usize, u8, u16, u32, u64, u128);
