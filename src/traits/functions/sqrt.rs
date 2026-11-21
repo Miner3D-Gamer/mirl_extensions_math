@@ -4,9 +4,10 @@ pub const trait Sqrt {
     /// Take the sqrt of the given value and return the result
     fn sqrt(self) -> Self;
 }
+#[cfg(feature = "f16")]
 impl Sqrt for f16 {
     fn sqrt(self) -> Self {
-        core::intrinsics::sqrtf16(self)
+        core::intrinsics::sqrt(self)
     }
 }
 impl Sqrt for f32 {
@@ -19,9 +20,10 @@ impl Sqrt for f64 {
         core::f64::math::sqrt(self)
     }
 }
+#[cfg(feature = "f128")]
 impl Sqrt for f128 {
     fn sqrt(self) -> Self {
-        core::intrinsics::sqrtf128(self)
+        core::intrinsics::sqrt(self)
     }
 }
 

@@ -78,6 +78,7 @@ const impl IsPowerOfTwo for isize {
     }
 }
 
+#[cfg(feature = "f16")]
 impl IsPowerOfTwo for f16 {
     #[allow(clippy::float_cmp)]
     fn is_power_of_two(self) -> bool {
@@ -97,6 +98,7 @@ impl IsPowerOfTwo for f64 {
     }
 }
 
+#[cfg(feature = "f128")]
 impl IsPowerOfTwo for f128 {
     #[allow(clippy::float_cmp)]
     fn is_power_of_two(self) -> bool {

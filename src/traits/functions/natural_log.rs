@@ -7,24 +7,26 @@ pub const trait NaturalLog {
 
 // TODO: Implement NaturalLog for all U and I types
 
+#[cfg(feature = "f16")]
 impl NaturalLog for f16 {
     fn natural_log(self) -> Self {
-        core::intrinsics::logf16(self)
+        core::intrinsics::log(self)
     }
 }
 impl NaturalLog for f32 {
     fn natural_log(self) -> Self {
-        core::intrinsics::logf32(self)
+        core::intrinsics::log(self)
     }
 }
 
 impl NaturalLog for f64 {
     fn natural_log(self) -> Self {
-        core::intrinsics::logf64(self)
+        core::intrinsics::log(self)
     }
 }
+#[cfg(feature = "f128")]
 impl NaturalLog for f128 {
     fn natural_log(self) -> Self {
-        core::intrinsics::logf128(self)
+        core::intrinsics::log(self)
     }
 }

@@ -1,12 +1,11 @@
-use crate::Numbers128;
-use crate::Numbers512;
-use mirl_extensions_core::{One, SupportsRange1024, Zero};
+use crate::*;
+use mirl_extensions_core::*;
 
 /// Get any number between 512 and 1023
 ///
 /// An extended version of the [`Numbers512`] trait covering all numbers from 512 to 1023
 #[allow(missing_docs)]
-pub const trait Numbers1024: SupportsRange1024 + Numbers512 {
+pub const trait Numbers2Pow10: SupportsRange2Pow10 + [const] Numbers2Pow9 {
     fn num_512() -> Self;
     fn num_513() -> Self;
     fn num_514() -> Self;
@@ -521,13 +520,12 @@ pub const trait Numbers1024: SupportsRange1024 + Numbers512 {
     fn num_1023() -> Self;
 }
 const impl<
-    T: SupportsRange1024
+    T: SupportsRange2Pow10
         + [const] One
         + [const] Zero
         + [const] core::ops::Add<Output = T>
-        + [const] Numbers512
-        + [const] Numbers128,
-> Numbers1024 for T
+        + [const] Numbers2Pow9
+> Numbers2Pow10 for T
 {
     fn num_512() -> Self {
         Self::num_511() + Self::num_1()

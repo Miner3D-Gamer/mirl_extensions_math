@@ -77,6 +77,7 @@ const impl NextPowerOfTwoExponent for isize {
     }
 }
 
+#[cfg(feature = "f16")]
 impl NextPowerOfTwoExponent for f16 {
     fn next_power_of_two_exponent(self) -> Self {
         let power = if self <= 1.0 {
@@ -110,6 +111,7 @@ impl NextPowerOfTwoExponent for f64 {
     }
 }
 
+#[cfg(feature = "f128")]
 impl NextPowerOfTwoExponent for f128 {
     fn next_power_of_two_exponent(self) -> Self {
         let power = if self <= 1.0 {

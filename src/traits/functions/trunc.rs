@@ -9,24 +9,26 @@ pub const trait Trunc {
 
 // TODO: Implement Fract for all U and I types
 
+#[cfg(feature = "f16")]
 impl Trunc for f16 {
     fn trunc(self) -> Self {
-        core::intrinsics::truncf16(self)
+        core::intrinsics::trunc(self)
     }
 }
 impl Trunc for f32 {
     fn trunc(self) -> Self {
-        core::intrinsics::truncf32(self)
+        core::f32::math::trunc(self)
     }
 }
 
 impl Trunc for f64 {
     fn trunc(self) -> Self {
-        core::intrinsics::truncf64(self)
+        core::f64::math::trunc(self)
     }
 }
+#[cfg(feature = "f128")]
 impl Trunc for f128 {
     fn trunc(self) -> Self {
-        core::intrinsics::truncf128(self)
+        core::intrinsics::trunc(self)
     }
 }

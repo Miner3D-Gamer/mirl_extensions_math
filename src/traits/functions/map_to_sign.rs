@@ -63,7 +63,9 @@ impl_sign_mapping!(i32, u32);
 impl_sign_mapping!(i64, u64);
 impl_sign_mapping!(i128, u128);
 impl_sign_mapping!(isize, usize);
+#[cfg(feature = "f16")]
 impl_sign_mapping!(f16, f16);
 impl_sign_mapping!(f32, f32);
 impl_sign_mapping!(f64, f64);
+#[cfg(feature = "f128")]
 impl_sign_mapping!(f128, f128);

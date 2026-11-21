@@ -6,10 +6,11 @@
 mod bigfloat;
 #[cfg(feature = "bigint")]
 mod bigint;
+#[cfg(not(all(feature = "f128", feature = "f16")))]
+mod consts;
 #[cfg(feature = "fixed")]
 mod fixed;
-
-mod consts;
+#[cfg(not(all(feature = "f128", feature = "f16")))]
 pub use consts::*;
 
 mod functions;

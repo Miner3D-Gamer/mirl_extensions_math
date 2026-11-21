@@ -1,12 +1,12 @@
-use mirl_extensions_core::{One, SupportsRange256, Zero};
+use mirl_extensions_core::{One, SupportsRange2Pow8, Zero};
 
-use crate::Numbers128;
+use crate::*;
 
 #[allow(missing_docs)] // TODO: Docs
 /// Get any number between 128 and 255
 ///
 /// An extended version of the [`Numbers128`] trait covering all numbers from 128 to 255
-pub const trait Numbers256: SupportsRange256 + Numbers128 {
+pub const trait Numbers2Pow8: SupportsRange2Pow8 + [const] Numbers2Pow7 {
     fn num_128() -> Self;
     fn num_129() -> Self;
     fn num_130() -> Self;
@@ -137,8 +137,12 @@ pub const trait Numbers256: SupportsRange256 + Numbers128 {
     fn num_255() -> Self;
 }
 const impl<
-    T: SupportsRange256 + const One + const Zero + const core::ops::Add<Output = T> + const Numbers128,
-> Numbers256 for T
+    T: SupportsRange2Pow8
+        + const One
+        + const Zero
+        + const core::ops::Add<Output = T>
+        + const Numbers2Pow7,
+> Numbers2Pow8 for T
 {
     fn num_128() -> Self {
         Self::num_127() + Self::num_1()

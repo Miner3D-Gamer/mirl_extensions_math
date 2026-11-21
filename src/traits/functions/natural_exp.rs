@@ -4,26 +4,28 @@ pub const trait NaturalExp {
     /// Returns e^self
     fn natural_exp(self) -> Self;
 }
+#[cfg(feature = "f16")]
 impl NaturalExp for f16 {
     fn natural_exp(self) -> Self {
-        core::intrinsics::expf16(self)
+        core::intrinsics::exp(self)
     }
 }
 
 impl NaturalExp for f32 {
     fn natural_exp(self) -> Self {
-        core::intrinsics::expf32(self)
+        core::intrinsics::exp(self)
     }
 }
 
 impl NaturalExp for f64 {
     fn natural_exp(self) -> Self {
-        core::intrinsics::expf64(self)
+        core::intrinsics::exp(self)
     }
 }
 
+#[cfg(feature = "f128")]
 impl NaturalExp for f128 {
     fn natural_exp(self) -> Self {
-        core::intrinsics::expf128(self)
+        core::intrinsics::exp(self)
     }
 }

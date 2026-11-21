@@ -4,6 +4,7 @@ pub const trait Fract {
     #[must_use]
     fn fract(self) -> Self;
 }
+#[cfg(feature = "f16")]
 impl Fract for f16 {
     fn fract(self) -> Self {
         self - self.trunc()
@@ -20,6 +21,7 @@ impl Fract for f64 {
         core::f64::math::fract(self)
     }
 }
+#[cfg(feature = "f128")]
 impl Fract for f128 {
     fn fract(self) -> Self {
         self - self.trunc()

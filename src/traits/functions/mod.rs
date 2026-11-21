@@ -72,7 +72,9 @@ mod interpolate_colors;
 pub use interpolate_colors::*;
 mod interpolate_values;
 pub use interpolate_values::*;
+#[cfg(all(feature = "f128", feature = "f16"))]
 mod angular_conversion;
+#[cfg(all(feature = "f128", feature = "f16"))]
 pub use angular_conversion::*;
 mod normalize_vector;
 pub use normalize_vector::*;

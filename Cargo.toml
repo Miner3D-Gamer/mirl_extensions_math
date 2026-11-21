@@ -2,7 +2,11 @@
 name = "mirl_extensions_math"
 version = "0.0.0-alpha"
 edition = "2024"
-repository.workspace = true
+repository = "https://github.com/Miner3D-Gamer/mirl_extensions_math"
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+maintenance.workspace = true
 [features]
 default = ["std"]
 std = [
@@ -35,6 +39,10 @@ bigfloat = [
 _checking = ["all", "test"]
 fixed = ["dep:fixed", "mirl_extensions_core/fixed"]
 test = ["mirl_extensions_core/test"]
+
+f128 = ["mirl_extensions_core/f128"]
+f16 = ["mirl_extensions_core/f16"]
+
 [dependencies]
 fixed = { version = "1.31.0", optional = true, features = [
     "f16",
@@ -44,7 +52,10 @@ mirl_extensions_conversion = { version = "0.0.0-alpha" }
 mirl_extensions_core = { version = "0.0.0-alpha" }
 # mirl_core = { version = "0.0.0-alpha" }
 mirl_graphics = { version = "0.0.0-alpha" }
-num-bigfloat = { version = "1.7", optional = true }
+num-bigfloat = { version = "1.7", optional = true, default-features = false, features = [
+    "std",
+    "num-traits",
+] }
 ### Number crates
 num-bigint = { version = "0.5", optional = true }
 num-traits = { version = "0.2.19", optional = true, no_default_features = true }

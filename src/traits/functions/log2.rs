@@ -7,24 +7,26 @@ pub const trait Log2 {
 
 // TODO: Implement Log2 for all U and I types
 
+#[cfg(feature = "f16")]
 impl Log2 for f16 {
     fn log2(self) -> Self {
-        core::intrinsics::log2f16(self)
+        core::intrinsics::log2(self)
     }
 }
 impl Log2 for f32 {
     fn log2(self) -> Self {
-        core::intrinsics::log2f32(self)
+        core::intrinsics::log2(self)
     }
 }
 
 impl Log2 for f64 {
     fn log2(self) -> Self {
-        core::intrinsics::log2f64(self)
+        core::intrinsics::log2(self)
     }
 }
+#[cfg(feature = "f128")]
 impl Log2 for f128 {
     fn log2(self) -> Self {
-        core::intrinsics::log2f128(self)
+        core::intrinsics::log2(self)
     }
 }

@@ -6,6 +6,7 @@ pub const trait Abs {
     /// Take the sqrt of the given value and return the result
     fn abs(self) -> Self;
 }
+#[cfg(feature = "f16")]
 const impl Abs for f16 {
     #[cfg(not(any(target_env = "gnu", target_env = "msvc")))]
     fn abs(self) -> Self {
@@ -36,6 +37,7 @@ const impl Abs for f64 {
         core::intrinsics::fabs(self)
     }
 }
+#[cfg(feature = "f128")]
 const impl Abs for f128 {
     #[cfg(not(any(target_env = "gnu", target_env = "msvc")))]
     fn abs(self) -> Self {

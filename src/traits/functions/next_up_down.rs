@@ -10,7 +10,13 @@ pub const trait NextUpDown {
     fn next_down(self) -> Self;
 }
 
-impl_trait!(NextUpDown {fn next_down(self)->Self{self.next_down()}fn next_up(self)->Self{self.next_up()}} for  f16,f32,f64,f128 );
+#[cfg(feature = "f128")]
+impl_trait!(NextUpDown {fn next_down(self)->Self{self.next_down()}fn next_up(self)->Self{self.next_up()}} for  f128 );
+
+#[cfg(feature = "f16")]
+impl_trait!(NextUpDown {fn next_down(self)->Self{self.next_down()}fn next_up(self)->Self{self.next_up()}} for  f16 );
+
+impl_trait!(NextUpDown {fn next_down(self)->Self{self.next_down()}fn next_up(self)->Self{self.next_up()}} for  f32,f64 );
 
 impl_trait!(NextUpDown {
     /// The next bigger value, stops at the maximum value the type can represent

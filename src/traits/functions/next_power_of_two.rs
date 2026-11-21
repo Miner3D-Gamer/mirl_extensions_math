@@ -77,6 +77,7 @@ const impl NextPowerOfTwo for isize {
     }
 }
 
+#[cfg(feature = "f16")]
 impl NextPowerOfTwo for f16 {
     fn next_power_of_two(self) -> Self {
         if self <= 1.0 {
@@ -105,6 +106,7 @@ impl NextPowerOfTwo for f64 {
         }
     }
 }
+#[cfg(feature = "f128")]
 impl NextPowerOfTwo for f128 {
     fn next_power_of_two(self) -> Self {
         if self <= 1.0 {

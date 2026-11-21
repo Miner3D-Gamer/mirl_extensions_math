@@ -68,4 +68,11 @@ macro_rules! impl_wrap_ops_float {
 }
 
 impl_wrap_ops_int! { i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize }
-impl_wrap_ops_float! {f16 f32 f64 f128}
+
+
+impl_wrap_ops_float! {f32 f64}
+#[cfg(feature = "f16")]
+impl_wrap_ops_float! {f16}
+
+#[cfg(feature = "f128")]
+impl_wrap_ops_float! { f128}

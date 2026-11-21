@@ -7,24 +7,26 @@ pub const trait Exp2 {
 
 // TODO: Implement Exp for all U and I types
 
+#[cfg(feature = "f16")]
 impl Exp2 for f16 {
     fn exp2(self) -> Self {
-        core::intrinsics::exp2f16(self)
+        core::intrinsics::exp2(self)
     }
 }
 impl Exp2 for f32 {
     fn exp2(self) -> Self {
-        core::intrinsics::exp2f32(self)
+        core::intrinsics::exp2(self)
     }
 }
 
 impl Exp2 for f64 {
     fn exp2(self) -> Self {
-        core::intrinsics::exp2f64(self)
+        core::intrinsics::exp2(self)
     }
 }
+#[cfg(feature = "f128")]
 impl Exp2 for f128 {
     fn exp2(self) -> Self {
-        core::intrinsics::exp2f128(self)
+        core::intrinsics::exp2(self)
     }
 }

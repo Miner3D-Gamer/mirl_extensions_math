@@ -1,12 +1,11 @@
-use crate::Numbers128;
-use crate::Numbers1024;
-use mirl_extensions_core::{One, SupportsRange2048, Zero};
+use crate::*;
+use mirl_extensions_core::*;
 
 /// Get any number between 1024 and 2047
 ///
-/// An extended version of the [`Numbers1024`] trait covering all numbers from 1024 to 2047
+/// An extended version of the [`Numbers2Pow10`] trait covering all numbers from 1024 to 2047
 #[allow(missing_docs)]
-pub const trait Numbers2048: SupportsRange2048 + Numbers1024 {
+pub const trait Numbers2Pow11: SupportsRange2Pow11 + [const] Numbers2Pow10 {
     fn num_1024() -> Self;
     fn num_1025() -> Self;
     fn num_1026() -> Self;
@@ -1033,13 +1032,12 @@ pub const trait Numbers2048: SupportsRange2048 + Numbers1024 {
     fn num_2047() -> Self;
 }
 const impl<
-    T: SupportsRange2048
+    T: SupportsRange2Pow11
         + [const] One
         + [const] Zero
         + [const] core::ops::Add<Output = T>
-        + [const] Numbers1024
-        + [const] Numbers128,
-> Numbers2048 for T
+        + [const] Numbers2Pow10,
+> Numbers2Pow11 for T
 {
     fn num_1024() -> Self {
         Self::num_1023() + Self::num_1()

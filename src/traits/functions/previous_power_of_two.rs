@@ -125,6 +125,7 @@ const impl PrevPowerOfTwo for isize {
     }
 }
 
+#[cfg(feature = "f16")]
 impl PrevPowerOfTwo for f16 {
     fn prev_power_of_two(self) -> Self {
         if self <= 1.0 {
@@ -155,6 +156,7 @@ impl PrevPowerOfTwo for f64 {
     }
 }
 
+#[cfg(feature = "f128")]
 impl PrevPowerOfTwo for f128 {
     fn prev_power_of_two(self) -> Self {
         if self <= 1.0 {

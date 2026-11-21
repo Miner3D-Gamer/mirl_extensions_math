@@ -4,7 +4,7 @@
 pub const trait Clamp {
     /// Restricts a value to be within a specified range [min, max]
     #[must_use]
-    fn clamp(self, min: Self, max: Self) -> Self;
+    fn clamped(self, min: Self, max: Self) -> Self;
 }
 
 // macro_rules! impl_clamp_int {
@@ -29,7 +29,7 @@ macro_rules! impl_clamp_float {
     ($($t:ty),*) => {
         $(
             const impl Clamp for $t {
-                fn clamp(self, min: Self, max: Self) -> Self {
+                fn clamped(self, min: Self, max: Self) -> Self {
                     if self.is_nan() || min.is_nan() || max.is_nan() {
                         return self;
                     }
@@ -51,4 +51,8 @@ macro_rules! impl_clamp_float {
 
 // impl_clamp_int!(u8, u16, u32, u64, u128, usize);
 
-impl_clamp_float!(f16, f32, f64, f128);
+#[cfg(feature = "f16")]
+impl_clamp_float!(f16);
+#[cfg(feature = "f128")]
+impl_clamp_float!(f128);
+impl_clamp_float!(f32, f64);

@@ -11,15 +11,17 @@ const impl Ceil for f64 {
     }
 }
 
+#[cfg(feature = "f16")]
 const impl Ceil for f16 {
     fn ceil(self) -> Self {
-        core::intrinsics::ceilf16(self)
+        core::intrinsics::ceil(self)
     }
 }
 
+#[cfg(feature = "f128")]
 const impl Ceil for f128 {
     fn ceil(self) -> Self {
-        core::intrinsics::ceilf128(self)
+        core::intrinsics::ceil(self)
     }
 }
 

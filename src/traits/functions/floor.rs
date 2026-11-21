@@ -14,15 +14,17 @@ const impl Floor for f64 {
         core::f64::math::floor(self)
     }
 }
+#[cfg(feature = "f128")]
 const impl Floor for f128 {
     fn floor(self) -> Self {
-        core::intrinsics::floorf128(self)
+        core::intrinsics::floor(self)
     }
 }
 
+#[cfg(feature = "f16")]
 const impl Floor for f16 {
     fn floor(self) -> Self {
-        core::intrinsics::floorf16(self)
+        core::intrinsics::floor(self)
     }
 }
 macro_rules! impl_floor_int {

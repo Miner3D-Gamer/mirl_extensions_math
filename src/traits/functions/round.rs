@@ -4,9 +4,10 @@ pub const trait Round {
     /// Round the current value to its nearest neighbor and return the result
     fn round(self) -> Self;
 }
+#[cfg(feature = "f16")]
 const impl Round for f16 {
     fn round(self) -> Self {
-        core::intrinsics::roundf16(self)
+        core::intrinsics::round(self)
     }
 }
 const impl Round for f32 {
@@ -19,9 +20,10 @@ const impl Round for f64 {
         core::f64::math::round(self)
     }
 }
+#[cfg(feature = "f128")]
 const impl Round for f128 {
     fn round(self) -> Self {
-        core::intrinsics::roundf128(self)
+        core::intrinsics::round(self)
     }
 }
 const impl Round for u8 {
